@@ -1,0 +1,67 @@
+ORG 00H;
+MAIN:   MOV P1 , #0FFH
+        ACALL DELAY
+        CLR C
+
+        MOV P1 , #00H
+        ACALL DELAY
+        CLR C
+
+        MOV P1 , #0AAH
+        ACALL DELAY
+        CLR C
+
+        MOV P1 , #55H
+        ACALL DELAY
+        CLR C
+
+        MOV P1 , #0F0H
+        ACALL DELAY
+        CLR C
+
+        MOV P1 , #05H
+        ACALL DELAY
+        CLR C
+
+        MOV P1 , #0FFH
+        ACALL DELAY
+        CLR C
+
+        ACALL ROT_R
+        ACALL DELAY
+        CLR C
+
+        ACALL ROT_L
+        ACALL DELAY
+        CLR C
+
+        LJMP MAIN;
+
+ROT_R:  MOV A , #80H
+UP:     MOV P1 , A
+
+RRC A
+ACALL DELAY
+
+JNZ UP
+RET
+
+ROT_L:  MOV A , #01H
+UP2:    MOV P1 , A
+        RLC A
+        ACALL DELAY
+
+JNZ UP2
+RET
+
+DELAY: MOV R1 , #255
+
+HERE3: MOV R3 , #0FFH
+HERE2: MOV R0 , #0FFH
+
+HERE:   DJNZ RO , HERE
+        DJNZ R1 , HERE2
+        DJNZ R2 , HERE3
+
+RET 
+END

@@ -1,0 +1,16 @@
+MVI C , 0A
+LXI H , 1000
+LXI D , 2009
+MVI C , 0A
+
+HERE:   MOV A , H
+        STAX D
+        INX H
+        DCX D
+        DCR C
+
+JNZ HERE;
+HLT;
+
+#ORG 1000H
+#DB 1,2,3,4,5,6,7,8,9

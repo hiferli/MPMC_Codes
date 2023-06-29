@@ -1,0 +1,33 @@
+LXI H , 2000
+MOV D , M
+INX H
+MOV E , M
+INX H
+MOV C , M
+INX H
+
+MOV A , 00
+MOV A , D
+
+HERE:   MOV M , A
+        ADD E
+        INX H
+        DCR C
+
+JNZ HERE
+LXI H , 2003
+LDA 2002
+MOV C , A
+MVI A , 00
+
+JUMP:   ADD M
+        INX HERE
+        DCR C
+
+JNZ JUMP
+MOV M , A
+
+HLT
+
+#ORG 2000H
+#DB 1 , 2 , 0A

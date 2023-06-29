@@ -1,0 +1,15 @@
+LXI H , 2000
+XRA A 
+MOV C , 05
+
+HERE:   MOV B , M
+        ADD B
+        INX H
+        DCR C
+
+JNZ HERE
+STA 2005
+HLT
+
+#ORG 2000H
+#DB 3 , 6 , 1 , 4 , 9
